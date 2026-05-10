@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+        body {
+            background: #fff5f8;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Envelope Style */
+        .envelope-container {
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.6s ease;
+            z-index: 10;
+        }
+        .envelope {
+            width: 400px;
+            height: 280px;
+            background: #ffd6e0;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.25);
+        }
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 140px;
+            background: #ffb3c1;
+            clip-path: polygon(0 0, 50% 50%, 100% 0);
+            transform-origin: top;
+            transition: transform 0.6s ease;
+            z-index: 3;
+        }
+        .heart-btn {
+            position: absolute;
+            top: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 60px;
+            color: #e63946;
+            cursor: pointer;
+            z-index: 5;
+            transition: 0.3s;
+        }
+        .heart-btn:hover {
+            transform: translateX(-50%) scale(1.1);
+        }
+
+        /* Envelope disappears when clicked */
+        .envelope-container.open {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.8);
+        }
+
+        /* Flowers on sides */
+        .flower-left, .flower-right {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 80px;
+            color: #ff4d6d;
+            opacity: 0;
+            transition: opacity 1s ease 0.3s;
+        }
+        .flower-left { left: 30px; }
+        .flower-right { right: 30px; }
+        .show-flowers .flower-left, .show-flowers .flower-right {
+            opacity: 1;
+        }
+
+        /* Letter — NO MARGINS */
+        .birthday-letter {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -40%);
+            background: #ffffff;
+            max-width: 600px;
+            width: 100%;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(255, 77, 109, 0.2);
+            border: 2px solid #ffd6e0;
+            opacity: 0;
+            transition: all 1s ease 0.3s;
+            z-index: 2;
+            margin: 0;
+        }
+        .show-letter .birthday-letter {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+
+        h1 {
+            text-align: center;
+            color: #e63946;
+            margin: 0 0 25px 0;
+            font-size: 2.2rem;
+        }
+        .letter-content {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #333333;
+            text-align: justify;
+            margin: 0;
+        }
+        .signature {
+            margin-top: 30px;
+            text-align: right;
+            font-style: italic;
+            color: #555;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .envelope { width: 300px; height: 210px; }
+            .envelope-flap { height: 105px; }
+            .heart-btn { font-size: 45px; top: 80px; }
+            .flower-left, .flower-right { font-size: 50px; }
+            .flower-left { left: 10px; }
+            .flower-right { right: 10px; }
+            h1 { font-size: 1.8rem; }
+            .letter-content { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Flowers -->
+    <div class="flower-left">🌸🌷🌻</div>
+    <div class="flower-right">🌻🌷🌸</div>
+
+    <!-- Envelope -->
+    <div class="envelope-container" id="envelope">
+        <div class="envelope">
+            <div class="envelope-flap"></div>
+            <div class="heart-btn" id="openBtn">❤️</div>
+        </div>
+    </div>
+
+    <!-- Birthday Letter -->
+    <div class="birthday-letter">
+        <h1>🎉 Happy Birthday 🎉</h1>
+        <div class="letter-content">
+            <p>My beloved Kristine,</p>
+            <br>
+            <p>Hello baby happy birthday! pasensya na wala ako maregalo at eto lang hindi din ako makapunta kasi baka ang ending paghiwalayin tayo, e ayaw ku, wish ko po sa 'yo is dumating pa sana ang masasayang araw,puno ng pagmamamahal at higit sa lahat bigyan ka sana, tayo ng magandang future.</p>
+            <p> 'Wag mo ako kakalimutan kapag nag college na tayo parehas kahit isang taon lang, mamimiss kita</p>
+            <p>sobrang napaka wonderful mong person, and everyone around you is lucky to have you. Thank you for bringing light and kindness into our lives. Never forget how special, loved, and appreciated you are.</p>
+            <p>Celebrate big, kumain ka madami lalo na yema cake mo, and enjoy every second of your day! You deserve nothing but the best today and always.</p>
+            <p>palagi mong tatandaan na pasaway o makulit man ako minsan at nasasaktan kita, mahal kita okay? i love you more and i love humor than anything, palagi ka mag iingat ha birthday girll, happu bdah ulit, happy 18th birthdayyyy </p>
+            <br>
+            <p>With love and warm wishes,</p>
+            <p class="signature">-Myc</p>
+        </div>
+    </div>
+
+    <!-- Happy Birthday Song -->
+    <audio id="bgMusic" loop>
+        <source src="https://cdn.freesound.org/previews/332/332628_4207030-lq.mp3" type="audio/mpeg">
+        Your browser does not support audio.
+    
+
+    <script>
+        const envelope = document.getElementById('envelope');
+        const body = document.body;
+        const music = document.getElementById('bgMusic');
+
+        envelope.addEventListener('click', () => {
+            envelope.classList.add('open'); // Envelope disappears
+            body.classList.add('show-flowers', 'show-letter'); // Show flowers & letter
+            music.play(); // Play real Happy Birthday song
+        });
+    </script>
+</body>
+</html>
